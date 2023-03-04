@@ -12,10 +12,10 @@ trait TenantConnectionResolver
     {
         if (! App::runningUnitTests()) {
             if (Auth::check()) {
-                $user = \Auth::user();
+                $user = Auth::user();
                 $role_id = $user->role_id;
                 if ($user->isAdmin()) {
-                    return env('DB_DATABASE', 'genealogy');//'enso');
+                    return 'mysql';
                 } else {
                     if (session()->get('db')) {
                         return 'tenantdb';
